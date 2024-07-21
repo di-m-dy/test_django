@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Список пользователей</h3>
+    <table style="border-collapse: collapse;">
+        <tr align="left">
+            <th>Пользователь</th>
+            <th>Отвеченных вопросов</th>
+            <th>Валюта</th>
+        </tr>
+        {% for profile in users %}
+            <tr style="background-color: {{ profile.background_color }}; border-color: {{ profile.border_color }};">
+                <td>{{ profile.user.username }}</td>
+                <td>{{ profile.user.useranswer_set.count }}</td>
+                <td>{{ profile.currency }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

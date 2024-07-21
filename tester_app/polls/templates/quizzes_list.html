@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Доступные опросы</h3>
+    {% if not quizzes %}
+    <span>
+        <a>Нет доступных опросов или все опросы вами пройдены<br>Ждите добавление новых</a>
+    </span>
+    {% endif %}
+    {% for quiz in quizzes %}
+        <span>
+            <a href="{% url 'take_quiz' quiz.id %}">{{ quiz.name }}</a>
+        </span>
+    {% endfor %}
+
+    <h3>Пройденные опросы</h3>
+    {% if not answers %}
+    <span>
+        <a>Информация отсутствует<br>Ни один опрос не пройден</a>
+    </span>
+    {% endif %}
+    {% for answer in answers %}
+        <span>
+            <a>Вопрос: {{ answer.question }}<br>Ваш ответ: {{ answer.choice }}</a>
+            <a>{{ answer.result }}</a>
+        </span>
+    {% endfor %}
+
+{% endblock %}

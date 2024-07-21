@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Профиль пользователя</h2>
+    <span>
+        <a>Баланс:</a>
+        <a>{{ profile.currency }}</a>
+    </span>
+    <span>
+        <a>Всего ответов:</a>
+        <a>{{ answers }}</a>
+    </span>
+    <span>
+        <a>Правильных ответов:</a>
+        <a>{{ right_answers }}</a>
+    </span>
+
+{% if profile.currency >= 20 %}
+    <form method="post">
+        {% csrf_token %}
+        <span>
+            <a>Цвет фона:</a>
+            <input type="color" name="background_color" value="{{ profile.background_color }}">
+        </span>
+        <input type="submit">
+
+    </form>
+{% else %}
+    <span>Недостаточно средств для изменения цвета</span>
+{% endif %}
+
+{% endblock %}

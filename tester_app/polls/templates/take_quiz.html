@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ quiz.name }}</h2>
+    <h3>{{ quiz.description }}</h3>
+    <form method="post">
+        {% csrf_token %}
+
+        {% for question in questions %}
+        <p>
+            {{ question.question_text }}
+            {% for choice in question.choice_set.all %}
+                <ul>
+                    <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" required>
+                    {{ choice.choice_text }}
+                </ul>
+
+            {% endfor %}
+        </p>
+        {% endfor %}
+
+        <input type="submit"></input>
+
+    </form>
+{% endblock %}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Опросы в виде викторины{% endblock %}</title>
+</head>
+<body>
+    <style>
+        header {
+            display: block;
+            font-size: .8em;
+            font-weight: bold;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        main {
+            padding: .8px;
+        }
+        span {
+            display: flex;
+            font-size: 1em;
+            justify-content: space-between;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+        }
+        a {
+            padding: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            padding: 10px;
+        }
+
+        #registration-form {
+            display: block;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+        }
+
+        .form-row label {
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+            padding-right: 10px;
+        }
+
+        .form-row input {
+            width: 300px; /* Adjust this value as needed */
+        }
+        .submit-row {
+            width: 300px;
+            text-align: left;
+        }
+    </style>
+    <header>
+        {% if user.is_authenticated %}
+            <span style="border-color: {{ user.userprofile.border_color }}; background: {{ user.userprofile.background_color }};  display: flex; justify-content: flex-start;">
+                <a>Вы вошли как: {{ user.username }}</a>
+                <a>|</a>
+                <a>Баланс: {{ user.userprofile.currency }}</a>
+            </span>
+            <span style="display: flex; justify-content: center;">
+                <a href="{% url 'quizzes_list' %}">Главная</a>
+                <a href="{% url 'user_profile' %}">Профиль</a>
+                <a href="{% url 'user_list' %}">Статистика</a>
+                <a href="{% url 'logout' %}">Выйти</a>
+            </span>
+        {% else %}
+            <span>
+                Вы не вошли в систему
+            </span>
+        {% endif %}
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

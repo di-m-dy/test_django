@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if form.errors %}
+  <h3>Логин и пароль не совпадают. Попробуйте еще</h3>
+{% endif %}
+
+{% if next %}
+    <h3>Please login to see this page.</h3>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+    <table style="display: flex; justify-content: flex-start;">
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="login" /></td>
+        <td><input type="hidden" name="next" value="{{ next }}" /></td>
+      </tr>
+    </table>
+  <a href="{% url 'signup' %}">Регистрация</a>
+  <br>
+  <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+</form>
+
+{% endblock %}
