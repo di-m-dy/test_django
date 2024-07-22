@@ -23,8 +23,14 @@
 
 ## Логины и пароли для тестовых аккаунтов
 
-1. username: johnlennon
-   password: 1234len4321
-2. username: michaeljordan
-   password: 1234jor4321
-3. username: alexdower
+1. username: `johnlennon`
+
+   password: `1234len4321`
+
+2. username: `michaeljordan`
+
+   password: `1234jor4321`
+
+3. username: `alexdower`
+
+   password: `1234dow4321`
